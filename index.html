@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <title>Om Giri Goswami | ECE Engineer & IoT Specialist</title>
+    <meta name="description"
+        content="Portfolio of Om Giri Goswami - B.Tech ECE Student, Hackathon Winner, and IoT enthusiast building the future with Arduino, ESP32, and Modern Web Tech." />
+    <meta name="keywords"
+        content="Om Giri Goswami, JEC Jabalpur, ECE, IoT Engineer, Web Developer, Arduino, ESP32, Hackathon Winner" />
+    <!-- Social/OpenGraph Tags -->
+    <meta property="og:title" content="Om Giri Goswami | Engineering Portfolio" />
+    <meta property="og:description" content="Explore my experiments in IoT, Web Dev, and Embedded Systems." />
+    <meta property="og:type" content="website" />
+    <!-- TODO: After deployment, replace with absolute URL e.g. https://yourdomain.com/website-ui.png -->
+    <meta property="og:image" content="./website-ui.png" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface": "#131313",
+                        "surface-container-low": "#1b1b1b",
+                        "surface-container-lowest": "#0e0e0e",
+                        "primary": "#dbfcff",
+                        "primary-container": "#00f0ff",
+                        "secondary": "#e3b5ff",
+                        "secondary-container": "#9400e4",
+                        "on-surface": "#e2e2e2",
+                        "on-surface-variant": "#b9cacb",
+                        "on-primary-container": "#006970",
+                        "outline-variant": "#3b494b",
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-12px)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="font-body selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden">
+
+    <!-- Cinematic Identity Pulse (Void-Bot) -->
+    <div id="preloader">
+        <div id="namaste-bot">
+            <div class="bot-aura"></div>
+            <div class="bot-frame scale-110 sm:scale-150">
+                <div class="bot-head">
+                    <div class="flex gap-10">
+                        <div class="bot-eye"></div>
+                        <div class="bot-eye"></div>
+                    </div>
+                </div>
+                <div class="bot-body">
+                    <div class="bot-arm arm-l"></div>
+                    <div class="bot-arm arm-r"></div>
+                </div>
+            </div>
+            <div class="mt-20 sm:mt-32 text-center">
+                <div class="font-headline text-4xl sm:text-5xl font-bold tracking-tight text-white mb-2 drop-shadow-[0_0_15px_rgba(0,240,255,0.8)]">
+                    # Welcome to My Portfolio
+                </div>
+                <div class="text-[var(--accent-glow)] font-body text-xs sm:text-sm tracking-[0.5em] uppercase opacity-50">
+                    System Identification Confirmed
+                </div>
+                <!-- Preloader Progress Bar -->
+                <div class="preloader-progress">
+                    <div class="preloader-bar-track">
+                        <div class="preloader-bar-fill" id="preloader-fill"></div>
+                    </div>
+                    <div class="preloader-percent" id="preloader-percent">000%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Film Grain Texture Overlay -->
+    <div class="film-grain" aria-hidden="true"></div>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+
+    <!-- Aurora Wave Canvas -->
+    <canvas id="aurora-bg" class="fixed inset-0 z-[-3] pointer-events-none"></canvas>
+
+    <!-- Neural Constellation Canvas -->
+    <canvas id="particles-bg" class="fixed inset-0 z-[-2] pointer-events-none"></canvas>
+
+    <!-- TopNavBar -->
+    <header
+        class="fixed top-0 w-full z-50 bg-[#131313]/70 backdrop-blur-xl border-b border-outline-variant/30 transition-all duration-500"
+        id="navbar">
+        <div class="flex justify-between items-center px-8 py-4 max-w-[1440px] mx-auto">
+            <div class="text-xl font-bold tracking-tighter text-[var(--accent-glow)] drop-shadow-[0_0_10px_rgba(0,240,255,0.5)] font-headline hover:scale-105 transition-transform cursor-pointer group"
+                onclick="triggerIdentityPulse()">
+                <span class="group-hover:text-white transition-colors">OM GIRI GOSWAMI</span>
+            </div>
+            <nav class="hidden md:flex items-center gap-6 lg:gap-8 nav-links">
+                <a class="nav-link relative font-headline tracking-tight text-xs lg:text-sm uppercase text-white/60 hover:text-[#00F0FF] hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all"
+                    href="#hero">Home</a>
+                <a class="nav-link relative font-headline tracking-tight text-xs lg:text-sm uppercase text-white/60 hover:text-[#00F0FF] hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all"
+                    href="#about">About</a>
+                <a class="nav-link relative font-headline tracking-tight text-xs lg:text-sm uppercase text-white/60 hover:text-[#00F0FF] hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all"
+                    href="#skills">Skills</a>
+                <a class="nav-link relative font-headline tracking-tight text-xs lg:text-sm uppercase text-white/60 hover:text-[#00F0FF] hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all"
+                    href="#community">Community</a>
+                <a class="nav-link relative font-headline tracking-tight text-xs lg:text-sm uppercase text-white/60 hover:text-[#00F0FF] hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all"
+                    href="#projects">Projects</a>
+                <a class="nav-link relative font-headline tracking-tight text-xs lg:text-sm uppercase text-white/60 hover:text-[#00F0FF] hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all"
+                    href="#proof-of-work">Proof of Work</a>
+                <a class="nav-link relative font-headline tracking-tight text-xs lg:text-sm uppercase text-white/60 hover:text-[#00F0FF] hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all"
+                    href="#certificates">Certs</a>
+                <a class="nav-link relative font-headline tracking-tight text-xs lg:text-sm uppercase text-white/60 hover:text-[#00F0FF] hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all"
+                    href="./OmGiri_CV.pdf" target="_blank" rel="noopener noreferrer">CV</a>
+                <a class="nav-link relative font-headline tracking-tight text-xs lg:text-sm uppercase text-white/60 hover:text-[#00F0FF] hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all"
+                    href="#contact">Contact</a>
+            </nav>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn"
+                class="md:hidden text-white/80 hover:text-[#00F0FF] hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all focus:outline-none">
+                <span class="material-symbols-outlined text-3xl">menu</span>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Dropdown -->
+        <div id="mobile-menu"
+            class="hidden md:hidden absolute top-full left-0 w-full bg-[#131313]/95 backdrop-blur-xl border-b border-outline-variant/30 flex-col items-center py-6 gap-6 shadow-2xl origin-top transition-transform">
+            <a class="mobile-nav-link font-headline tracking-widest text-sm uppercase text-white/60 hover:text-[#00F0FF] hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all"
+                href="#hero">Home</a>
+            <a class="mobile-nav-link font-headline tracking-widest text-sm uppercase text-white/60 hover:text-[#00F0FF] hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all"
+                href="#about">About</a>
+            <a class="mobile-nav-link font-headline tracking-widest text-sm uppercase text-white/60 hover:text-[#00F0FF] hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all"
+                href="#skills">Skills</a>
+            <a class="mobile-nav-link font-headline tracking-widest text-xs sm:text-sm uppercase text-white/60 hover:text-[#00F0FF] hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all text-center px-4"
+                href="#community">Community</a>
+            <a class="mobile-nav-link font-headline tracking-widest text-sm uppercase text-white/60 hover:text-[#00F0FF] hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all"
+                href="#projects">Projects</a>
+            <a class="mobile-nav-link font-headline tracking-widest text-sm uppercase text-white/60 hover:text-[#00F0FF] hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all"
+                href="#proof-of-work">Proof of Work</a>
+            <a class="mobile-nav-link font-headline tracking-widest text-sm uppercase text-white/60 hover:text-[#00F0FF] hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all"
+                href="#certificates">Certifications</a>
+            <a class="mobile-nav-link font-headline tracking-widest text-sm uppercase text-white/60 hover:text-[#00F0FF] hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all"
+                href="./OmGiri_CV.pdf" target="_blank" rel="noopener noreferrer">CV</a>
+            <a class="mobile-nav-link font-headline tracking-widest text-sm uppercase text-white/60 hover:text-[#00F0FF] hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all"
+                href="#contact">Contact</a>
+        </div>
+    </header>
+
+    <main class="relative">
+        <!-- Atmospheric Parallax Glows -->
+        <div class="fixed top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary-container rounded-full nebula-glow pointer-events-none parallax-layer"
+            data-speed="1"></div>
+        <div class="fixed bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-secondary-container rounded-full nebula-glow pointer-events-none parallax-layer"
+            data-speed="-1"></div>
+
+        <!-- The 3D Sub-Element Orb in Hero -->
+        <div class="hero-orb parallax-layer" data-speed="-2.5"></div>
+
+        <!-- 1. Hero Section -->
+        <section class="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 relative"
+            id="hero">
+            <div class="max-w-4xl space-y-6">
+                <p
+                    class="label-md uppercase tracking-[0.4em] text-primary/80 font-medium dropshadow-sm reveal active animate-float">
+                    System Status: Operational</p>
+
+                <h1
+                    class="text-6xl md:text-8xl font-headline font-bold tracking-tight text-on-surface leading-tight drop-shadow-2xl reveal active delay-100">
+                    Engineering the <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary drop-shadow-lg">Future</span><br />with
+                    Code & Circuits
+                </h1>
+
+                <h2
+                    class="text-xl md:text-2xl text-primary font-bold tracking-widest uppercase reveal active delay-200 mt-4 drop-shadow-[0_0_8px_rgba(0,240,255,0.6)]">
+                    Hackathon Winner | IoT Builder | ECE Student
+                </h2>
+
+                <div
+                    class="text-xl md:text-2xl text-on-surface-variant max-w-2xl mx-auto font-light reveal active delay-300">
+                    I build <span id="dynamic-text"
+                        class="text-primary font-bold drop-shadow-[0_0_8px_rgba(0,240,255,0.6)] hover:drop-shadow-[0_0_15px_rgba(0,240,255,1)] transition-all duration-300 ease-out inline-block min-w-[300px] sm:min-w-[360px] md:min-w-[420px] text-left align-bottom">intelligent
+                        Arduino simulations</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8 reveal active delay-400">
+                    <a class="cta-button px-10 py-4 bg-primary-container text-surface rounded-full font-bold uppercase tracking-widest text-sm shadow-[0_0_20px_rgba(0,240,255,0.5)]"
+                        href="#projects">
+                        View Projects
+                    </a>
+                    <a class="cta-button px-10 py-4 border border-primary text-primary rounded-full font-bold uppercase tracking-widest text-sm hover:bg-primary/10 flex items-center gap-2 group/cv"
+                        href="./OmGiri_CV.pdf" target="_blank" rel="noopener noreferrer">
+                        <span
+                            class="material-symbols-outlined text-sm group-hover/cv:scale-125 transition-transform">download_for_offline</span>
+                        Get CV
+                    </a>
+                    <a class="cta-button px-10 py-4 border border-outline-variant text-on-surface rounded-full font-bold uppercase tracking-widest text-sm hover:bg-white/5 hover:border-primary/50"
+                        href="#contact">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. About Section -->
+        <section class="py-32 px-6" id="about">
+            <div class="max-w-4xl mx-auto animate-float-delayed reveal">
+                <div
+                    class="glass-panel p-8 md:p-16 rounded-3xl border border-primary/20 relative overflow-hidden group hover:border-primary/50 transition-colors duration-500 shadow-[0_15px_40px_rgba(0,0,0,0.5)]">
+                    <div class="space-y-6 relative z-10">
+                        <div class="flex items-center gap-4">
+                            <span class="material-symbols-outlined text-primary text-4xl">fingerprint</span>
+                            <h2 class="text-4xl font-headline font-bold text-on-surface drop-shadow-md">Om Giri Goswami
+                            </h2>
+                        </div>
+                        <p class="text-lg text-on-surface-variant leading-relaxed font-body">
+                            I am a 19-year-old B.Tech Electronics and Communication Engineering (ECE) student at
+                            Jabalpur Engineering College (JEC).
+                            Hostel life has taught me the value of hustle and independent learning. With a strong
+                            foundation in core electronics,
+                            I bridge the gap between physical hardware and digital software to build things that matter.
+                        </p>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6 border-t border-outline-variant/30 mt-6">
+                            <div class="space-y-1">
+                                <p class="text-xs uppercase tracking-widest text-primary/60 font-bold">Institution</p>
+                                <p class="text-on-surface font-medium">JEC, Jabalpur</p>
+                            </div>
+                            <div class="space-y-1">
+                                <p class="text-xs uppercase tracking-widest text-primary/60 font-bold">Domain</p>
+                                <p class="text-on-surface font-medium">ECE</p>
+                            </div>
+                            <div class="space-y-1">
+                                <p class="text-xs uppercase tracking-widest text-primary/60 font-bold">Semester</p>
+                                <p class="text-on-surface font-medium">B.Tech 1st Year</p>
+                            </div>
+                            <div class="space-y-1">
+                                <p class="text-xs uppercase tracking-widest text-primary/60 font-bold">Achievement</p>
+                                <p
+                                    class="text-on-surface font-bold text-secondary drop-shadow-[0_0_12px_rgba(227,181,255,0.8)]" style="text-shadow: 0 0 18px rgba(227,181,255,0.6), 0 0 40px rgba(148,0,228,0.3);">
+                                    ⚡ Academic Excellence</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wave Divider: About → Skills -->
+        <div class="wave-divider">
+            <svg viewBox="0 0 1440 80" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0V40Z" fill="#131313" fill-opacity="0.5"/>
+                <path d="M0 40C240 80 480 0 720 40C960 80 1200 0 1440 40" stroke="rgba(0,240,255,0.08)" stroke-width="1"/>
+            </svg>
+        </div>
+
+        <!-- Tech Stack Marquee Ticker -->
+        <div class="marquee-container bg-surface-container-lowest">
+            <div class="marquee-track">
+                <span class="marquee-item"><span class="dot"></span>Arduino</span>
+                <span class="marquee-item"><span class="dot"></span>ESP32</span>
+                <span class="marquee-item"><span class="dot"></span>React.js</span>
+                <span class="marquee-item"><span class="dot"></span>C++</span>
+                <span class="marquee-item"><span class="dot"></span>Tailwind CSS</span>
+                <span class="marquee-item"><span class="dot"></span>IoT</span>
+                <span class="marquee-item"><span class="dot"></span>Wokwi</span>
+                <span class="marquee-item"><span class="dot"></span>Tinkercad</span>
+                <span class="marquee-item"><span class="dot"></span>Supabase</span>
+                <span class="marquee-item"><span class="dot"></span>Vercel</span>
+                <span class="marquee-item"><span class="dot"></span>Netlify</span>
+                <span class="marquee-item"><span class="dot"></span>Embedded Systems</span>
+                <span class="marquee-item"><span class="dot"></span>PWM Control</span>
+                <span class="marquee-item"><span class="dot"></span>Bluetooth</span>
+                <!-- Duplicate for seamless loop -->
+                <span class="marquee-item"><span class="dot"></span>Arduino</span>
+                <span class="marquee-item"><span class="dot"></span>ESP32</span>
+                <span class="marquee-item"><span class="dot"></span>React.js</span>
+                <span class="marquee-item"><span class="dot"></span>C++</span>
+                <span class="marquee-item"><span class="dot"></span>Tailwind CSS</span>
+                <span class="marquee-item"><span class="dot"></span>IoT</span>
+                <span class="marquee-item"><span class="dot"></span>Wokwi</span>
+                <span class="marquee-item"><span class="dot"></span>Tinkercad</span>
+                <span class="marquee-item"><span class="dot"></span>Supabase</span>
+                <span class="marquee-item"><span class="dot"></span>Vercel</span>
+                <span class="marquee-item"><span class="dot"></span>Netlify</span>
+                <span class="marquee-item"><span class="dot"></span>Embedded Systems</span>
+                <span class="marquee-item"><span class="dot"></span>PWM Control</span>
+                <span class="marquee-item"><span class="dot"></span>Bluetooth</span>
+            </div>
+        </div>
+
+        <!-- 3. Skills Section -->
+        <section class="py-24 bg-surface-container-low/30 relative overflow-hidden" id="skills">
+            <!-- Giant Backdrop Text -->
+            <div class="backdrop-text" aria-hidden="true">SKILLS</div>
+            <div class="max-w-6xl mx-auto px-6 text-center reveal">
+                <h2
+                    class="text-5xl md:text-6xl font-headline font-bold text-on-surface tracking-tighter mb-4 animate-float drop-shadow-lg">
+                    Technical Arsenal</h2>
+                <p class="text-primary tracking-[0.2em] uppercase text-sm mb-16">Hardware & Software Integration</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto text-left">
+                    <!-- Software Skills Card -->
+                    <div
+                        class="interactive-card glass-panel p-8 md:p-10 rounded-2xl border border-white/10 group shadow-xl hover:border-primary/40 transition-colors">
+                        <div class="flex items-center gap-4 mb-6">
+                            <span
+                                class="material-symbols-outlined text-4xl text-primary drop-shadow-[0_0_10px_rgba(0,240,255,0.4)] group-hover:drop-shadow-[0_0_15px_rgba(0,240,255,0.8)] transition-all">terminal</span>
+                            <h3 class="text-2xl font-headline font-bold text-on-surface tracking-wide uppercase">
+                                Software Skills</h3>
+                        </div>
+                        <ul class="space-y-4">
+                            <li
+                                class="flex items-start gap-3 p-2 rounded-lg hover:bg-primary/5 transition-colors group/skill">
+                                <span
+                                    class="material-symbols-outlined text-primary text-sm mt-1 opacity-60 group-hover/skill:opacity-100 transition-opacity">tag</span>
+                                <div class="flex flex-col">
+                                    <span
+                                        class="text-on-surface-variant text-sm leading-relaxed text-left group-hover/skill:text-primary transition-colors">C
+                                        & C++ Fundamentals</span>
+                                    <span
+                                        class="text-[10px] uppercase tracking-widest text-primary/60 font-bold mt-1">Core
+                                        Logic & Problem Solving</span>
+                                </div>
+                            </li>
+                            <li
+                                class="flex items-start gap-3 p-2 rounded-lg hover:bg-primary/5 transition-colors group/skill">
+                                <span
+                                    class="material-symbols-outlined text-primary text-sm mt-1 opacity-60 group-hover/skill:opacity-100 transition-opacity">tag</span>
+                                <div class="flex flex-col">
+                                    <span
+                                        class="text-on-surface-variant text-sm leading-relaxed text-left group-hover/skill:text-primary transition-colors">Modern
+                                        Web Development</span>
+                                    <span
+                                        class="text-[10px] uppercase tracking-widest text-primary/60 font-bold mt-1">Frontend
+                                        & UI/UX</span>
+                                </div>
+                            </li>
+                            <li
+                                class="flex items-start gap-3 p-2 rounded-lg hover:bg-primary/5 transition-colors group/skill">
+                                <span
+                                    class="material-symbols-outlined text-primary text-sm mt-1 opacity-60 group-hover/skill:opacity-100 transition-opacity">tag</span>
+                                <div class="flex flex-col">
+                                    <span
+                                        class="text-on-surface-variant text-sm leading-relaxed text-left group-hover/skill:text-primary transition-colors">Vibe
+                                        Coding</span>
+                                    <span
+                                        class="text-[10px] uppercase tracking-widest text-primary/60 font-bold mt-1">AI-Assisted
+                                        Development</span>
+                                </div>
+                            </li>
+                            <li
+                                class="flex items-start gap-3 p-2 rounded-lg hover:bg-primary/5 transition-colors group/skill">
+                                <span
+                                    class="material-symbols-outlined text-primary text-sm mt-1 opacity-60 group-hover/skill:opacity-100 transition-opacity">tag</span>
+                                <div class="flex flex-col">
+                                    <span
+                                        class="text-on-surface-variant text-sm leading-relaxed text-left group-hover/skill:text-primary transition-colors">Netlify
+                                        & Vercel</span>
+                                    <span
+                                        class="text-[10px] uppercase tracking-widest text-primary/60 font-bold mt-1">Deployment
+                                        & Hosting</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Hardware Skills Card -->
+                    <div
+                        class="interactive-card glass-panel p-8 md:p-10 rounded-2xl border border-white/10 group shadow-xl hover:border-secondary/40 transition-colors">
+                        <div class="flex items-center gap-4 mb-6">
+                            <span
+                                class="material-symbols-outlined text-4xl text-secondary drop-shadow-[0_0_10px_rgba(227,181,255,0.4)] group-hover:drop-shadow-[0_0_15px_rgba(227,181,255,0.8)] transition-all">memory_alt</span>
+                            <h3 class="text-2xl font-headline font-bold text-on-surface tracking-wide uppercase">
+                                Hardware Skills</h3>
+                        </div>
+                        <ul class="space-y-4">
+                            <li
+                                class="flex items-start gap-3 p-2 rounded-lg hover:bg-secondary/5 transition-colors group/skill">
+                                <span
+                                    class="material-symbols-outlined text-secondary text-sm mt-1 opacity-60 group-hover/skill:opacity-100 transition-opacity">tag</span>
+                                <div class="flex flex-col">
+                                    <span
+                                        class="text-on-surface-variant text-sm leading-relaxed text-left group-hover/skill:text-secondary transition-colors">Arduino
+                                        & ESP32</span>
+                                    <span
+                                        class="text-[10px] uppercase tracking-widest text-secondary/60 font-bold mt-1">Embedded
+                                        Systems & IoT</span>
+                                </div>
+                            </li>
+                            <li
+                                class="flex items-start gap-3 p-2 rounded-lg hover:bg-secondary/5 transition-colors group/skill">
+                                <span
+                                    class="material-symbols-outlined text-secondary text-sm mt-1 opacity-60 group-hover/skill:opacity-100 transition-opacity">tag</span>
+                                <div class="flex flex-col">
+                                    <span
+                                        class="text-on-surface-variant text-sm leading-relaxed text-left group-hover/skill:text-secondary transition-colors">Circuit
+                                        Designing</span>
+                                    <span
+                                        class="text-[10px] uppercase tracking-widest text-secondary/60 font-bold mt-1">Hardware
+                                        Prototyping</span>
+                                </div>
+                            </li>
+                            <li
+                                class="flex items-start gap-3 p-2 rounded-lg hover:bg-secondary/5 transition-colors group/skill">
+                                <span
+                                    class="material-symbols-outlined text-secondary text-sm mt-1 opacity-60 group-hover/skill:opacity-100 transition-opacity">tag</span>
+                                <div class="flex flex-col">
+                                    <span
+                                        class="text-on-surface-variant text-sm leading-relaxed text-left group-hover/skill:text-secondary transition-colors">Wokwi
+                                        Simulation</span>
+                                    <span
+                                        class="text-[10px] uppercase tracking-widest text-secondary/60 font-bold mt-1">Virtual
+                                        Embedded Testing</span>
+                                </div>
+                            </li>
+                            <li
+                                class="flex items-start gap-3 p-2 rounded-lg hover:bg-secondary/5 transition-colors group/skill">
+                                <span
+                                    class="material-symbols-outlined text-secondary text-sm mt-1 opacity-60 group-hover/skill:opacity-100 transition-opacity">tag</span>
+                                <div class="flex flex-col">
+                                    <span
+                                        class="text-on-surface-variant text-sm leading-relaxed text-left group-hover/skill:text-secondary transition-colors">Tinkercad
+                                        Circuits</span>
+                                    <span
+                                        class="text-[10px] uppercase tracking-widest text-secondary/60 font-bold mt-1">Rapid
+                                        Prototyping</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wave Divider: Skills → Community -->
+        <div class="wave-divider" style="transform: scaleX(-1);">
+            <svg viewBox="0 0 1440 80" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0V40Z" fill="#131313" fill-opacity="0.5"/>
+                <path d="M0 40C240 80 480 0 720 40C960 80 1200 0 1440 40" stroke="rgba(148,0,228,0.08)" stroke-width="1"/>
+            </svg>
+        </div>
+
+        <!-- Tech Community & Involvement Section -->
+        <section class="py-24 px-6 bg-surface border-t border-outline-variant/10 relative overflow-hidden"
+            id="community">
+            <div class="max-w-6xl mx-auto reveal">
+                <div class="space-y-4 mb-16 text-center md:text-left">
+                    <h2 class="text-5xl font-headline font-bold text-on-surface drop-shadow-md">Tech Community &
+                        Involvement</h2>
+                    <p class="text-on-surface-variant max-w-2xl text-lg">Collaborative development, leadership, and
+                        real-world engagement beyond academics.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- JLUG Card -->
+                    <div
+                        class="interactive-card group relative glass-panel rounded-2xl p-8 md:p-10 border border-white/10 hover:border-primary/50 shadow-2xl hover:shadow-[0_10px_30px_rgba(0,240,255,0.15)] bg-surface-container-low/50">
+                        <div class="flex items-start gap-4 mb-6">
+                            <span
+                                class="material-symbols-outlined text-4xl text-primary drop-shadow-[0_0_8px_rgba(0,240,255,0.6)] group-hover:drop-shadow-[0_0_15px_rgba(0,240,255,1)] transition-all duration-500">groups</span>
+                            <div>
+                                <h3 class="text-2xl font-headline font-bold text-on-surface">JLUG JEC</h3>
+                                <p class="text-xs font-bold tracking-widest uppercase text-primary mt-1">Technical Team
+                                    Member</p>
+                                <p
+                                    class="text-[10px] uppercase tracking-widest text-on-surface-variant opacity-60 mt-1">
+                                    JEC Linux Users Group</p>
+                            </div>
+                        </div>
+                        <ul
+                            class="space-y-3 relative before:absolute before:inset-0 before:ml-[5px] before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-primary/20 before:to-transparent pl-6 md:pl-0 mt-4 border-l border-primary/20 md:border-none">
+                            <li
+                                class="flex items-start gap-3 group/item hover:-translate-y-1 transition-transform relative">
+                                <span
+                                    class="absolute -left-8 top-1.5 w-4 h-4 rounded-full bg-primary/20 border-2 border-primary group-hover/item:bg-primary group-hover/item:shadow-[0_0_10px_rgba(0,240,255,0.8)] transition-all md:hidden"></span>
+                                <span
+                                    class="material-symbols-outlined text-primary text-lg mt-0.5 opacity-60 group-hover/item:opacity-100 group-hover/item:scale-110 transition-all">forum</span>
+                                <span
+                                    class="text-on-surface-variant text-sm leading-relaxed text-left group-hover/item:text-white transition-colors">Actively
+                                    involved in technical discussions and collaborative development activities</span>
+                            </li>
+                            <li
+                                class="flex items-start gap-3 group/item hover:-translate-y-1 transition-transform relative">
+                                <span
+                                    class="absolute -left-8 top-1.5 w-4 h-4 rounded-full bg-primary/20 border-2 border-primary group-hover/item:bg-primary group-hover/item:shadow-[0_0_10px_rgba(0,240,255,0.8)] transition-all md:hidden"></span>
+                                <span
+                                    class="material-symbols-outlined text-primary text-lg mt-0.5 opacity-60 group-hover/item:opacity-100 group-hover/item:scale-110 transition-all">school</span>
+                                <span
+                                    class="text-on-surface-variant text-sm leading-relaxed text-left group-hover/item:text-white transition-colors">Contributed
+                                    to technical initiatives and learning sessions within the community</span>
+                            </li>
+                            <li
+                                class="flex items-start gap-3 group/item hover:-translate-y-1 transition-transform relative">
+                                <span
+                                    class="absolute -left-8 top-1.5 w-4 h-4 rounded-full bg-primary/20 border-2 border-primary group-hover/item:bg-primary group-hover/item:shadow-[0_0_10px_rgba(0,240,255,0.8)] transition-all md:hidden"></span>
+                                <span
+                                    class="material-symbols-outlined text-primary text-lg mt-0.5 opacity-60 group-hover/item:opacity-100 group-hover/item:scale-110 transition-all">explore</span>
+                                <span
+                                    class="text-on-surface-variant text-sm leading-relaxed text-left group-hover/item:text-white transition-colors">Explored
+                                    real-world applications of development and open-source technologies</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- MATRIX Card -->
+                    <div
+                        class="interactive-card group relative glass-panel rounded-2xl p-8 md:p-10 border border-white/10 hover:border-secondary/50 shadow-2xl hover:shadow-[0_10px_30px_rgba(227,181,255,0.15)] bg-surface-container-low/50">
+                        <div class="flex items-start gap-4 mb-6">
+                            <span
+                                class="material-symbols-outlined text-4xl text-secondary drop-shadow-[0_0_8px_rgba(227,181,255,0.6)] group-hover:drop-shadow-[0_0_15px_rgba(227,181,255,1)] transition-all duration-500">campaign</span>
+                            <div>
+                                <h3 class="text-2xl font-headline font-bold text-on-surface">MATRIX JEC</h3>
+                                <p class="text-xs font-bold tracking-widest uppercase text-secondary mt-1">PR &
+                                    Marketing Team Member</p>
+                            </div>
+                        </div>
+                        <ul
+                            class="space-y-3 relative before:absolute before:inset-0 before:ml-[5px] before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-secondary/20 before:to-transparent pl-6 md:pl-0 mt-4 border-l border-secondary/20 md:border-none">
+                            <li
+                                class="flex items-start gap-3 group/item hover:-translate-y-1 transition-transform relative">
+                                <span
+                                    class="absolute -left-8 top-1.5 w-4 h-4 rounded-full bg-secondary/20 border-2 border-secondary group-hover/item:bg-secondary group-hover/item:shadow-[0_0_10px_rgba(227,181,255,0.8)] transition-all md:hidden"></span>
+                                <span
+                                    class="material-symbols-outlined text-secondary text-lg mt-0.5 opacity-60 group-hover/item:opacity-100 group-hover/item:scale-110 transition-all">rss_feed</span>
+                                <span
+                                    class="text-on-surface-variant text-sm leading-relaxed text-left group-hover/item:text-white transition-colors">Managed
+                                    communication and outreach for technical events and activities</span>
+                            </li>
+                            <li
+                                class="flex items-start gap-3 group/item hover:-translate-y-1 transition-transform relative">
+                                <span
+                                    class="absolute -left-8 top-1.5 w-4 h-4 rounded-full bg-secondary/20 border-2 border-secondary group-hover/item:bg-secondary group-hover/item:shadow-[0_0_10px_rgba(227,181,255,0.8)] transition-all md:hidden"></span>
+                                <span
+                                    class="material-symbols-outlined text-secondary text-lg mt-0.5 opacity-60 group-hover/item:opacity-100 group-hover/item:scale-110 transition-all">trending_up</span>
+                                <span
+                                    class="text-on-surface-variant text-sm leading-relaxed text-left group-hover/item:text-white transition-colors">Contributed
+                                    to promotion strategies and event visibility</span>
+                            </li>
+                            <li
+                                class="flex items-start gap-3 group/item hover:-translate-y-1 transition-transform relative">
+                                <span
+                                    class="absolute -left-8 top-1.5 w-4 h-4 rounded-full bg-secondary/20 border-2 border-secondary group-hover/item:bg-secondary group-hover/item:shadow-[0_0_10px_rgba(227,181,255,0.8)] transition-all md:hidden"></span>
+                                <span
+                                    class="material-symbols-outlined text-secondary text-lg mt-0.5 opacity-60 group-hover/item:opacity-100 group-hover/item:scale-110 transition-all">handshake</span>
+                                <span
+                                    class="text-on-surface-variant text-sm leading-relaxed text-left group-hover/item:text-white transition-colors">Worked
+                                    in team coordination for organizing and managing tech-related initiatives</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact Metrics Section -->
+        <section class="py-20 px-6 bg-surface-container-lowest relative overflow-hidden">
+            <!-- Subtle glow behind the section -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gradient-to-r from-primary-container/10 via-transparent to-secondary-container/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div class="max-w-5xl mx-auto reveal relative z-10">
+                <div class="text-center mb-12">
+                    <p class="text-primary tracking-[0.3em] uppercase text-xs font-bold mb-3">Verified Stats</p>
+                    <h2 class="text-4xl md:text-5xl font-headline font-bold text-on-surface drop-shadow-md">By The Numbers</h2>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <!-- Stat 1: Hackathon -->
+                    <div class="group glass-panel rounded-2xl p-6 md:p-8 border border-primary/20 hover:border-primary/60 text-center transition-all duration-500 hover:shadow-[0_0_30px_rgba(0,240,255,0.15)] hover:-translate-y-2">
+                        <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all">
+                            <span class="material-symbols-outlined text-primary text-2xl">emoji_events</span>
+                        </div>
+                        <p class="text-4xl md:text-5xl font-headline font-bold text-primary drop-shadow-[0_0_10px_rgba(0,240,255,0.5)] mb-1" style="text-shadow: 0 0 20px rgba(0,240,255,0.4);">01</p>
+                        <p class="text-xs uppercase tracking-[0.2em] text-on-surface-variant font-bold">Hackathon Won</p>
+                        <p class="text-[10px] text-primary/50 mt-1 uppercase tracking-wider">Code Kumbh 2.0</p>
+                    </div>
+
+                    <!-- Stat 2: Projects -->
+                    <div class="group glass-panel rounded-2xl p-6 md:p-8 border border-secondary/20 hover:border-secondary/60 text-center transition-all duration-500 hover:shadow-[0_0_30px_rgba(227,181,255,0.15)] hover:-translate-y-2">
+                        <div class="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(227,181,255,0.4)] transition-all">
+                            <span class="material-symbols-outlined text-secondary text-2xl">rocket_launch</span>
+                        </div>
+                        <p class="text-4xl md:text-5xl font-headline font-bold text-secondary drop-shadow-[0_0_10px_rgba(227,181,255,0.5)] mb-1" style="text-shadow: 0 0 20px rgba(227,181,255,0.4);">04+</p>
+                        <p class="text-xs uppercase tracking-[0.2em] text-on-surface-variant font-bold">Projects Built</p>
+                        <p class="text-[10px] text-secondary/50 mt-1 uppercase tracking-wider">Hardware & Software</p>
+                    </div>
+
+                    <!-- Stat 3: Communities -->
+                    <div class="group glass-panel rounded-2xl p-6 md:p-8 border border-primary/20 hover:border-primary/60 text-center transition-all duration-500 hover:shadow-[0_0_30px_rgba(0,240,255,0.15)] hover:-translate-y-2">
+                        <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all">
+                            <span class="material-symbols-outlined text-primary text-2xl">groups</span>
+                        </div>
+                        <p class="text-4xl md:text-5xl font-headline font-bold text-primary drop-shadow-[0_0_10px_rgba(0,240,255,0.5)] mb-1" style="text-shadow: 0 0 20px rgba(0,240,255,0.4);">02</p>
+                        <p class="text-xs uppercase tracking-[0.2em] text-on-surface-variant font-bold">Tech Communities</p>
+                        <p class="text-[10px] text-primary/50 mt-1 uppercase tracking-wider">JLUG & MATRIX</p>
+                    </div>
+
+                    <!-- Stat 4: Year Status -->
+                    <div class="group glass-panel rounded-2xl p-6 md:p-8 border border-secondary/20 hover:border-secondary/60 text-center transition-all duration-500 hover:shadow-[0_0_30px_rgba(227,181,255,0.15)] hover:-translate-y-2">
+                        <div class="w-14 h-14 rounded-full bg-secondary/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(227,181,255,0.4)] transition-all">
+                            <span class="material-symbols-outlined text-secondary text-2xl">school</span>
+                        </div>
+                        <p class="text-4xl md:text-5xl font-headline font-bold text-secondary drop-shadow-[0_0_10px_rgba(227,181,255,0.5)] mb-1" style="text-shadow: 0 0 20px rgba(227,181,255,0.4);">1st</p>
+                        <p class="text-xs uppercase tracking-[0.2em] text-on-surface-variant font-bold">Year B.Tech</p>
+                        <p class="text-[10px] text-secondary/50 mt-1 uppercase tracking-wider">All Achieved as Fresher</p>
+                    </div>
+                </div>
+
+                <p class="text-center text-on-surface-variant/40 text-[10px] uppercase tracking-[0.3em] mt-8">All data is verifiable via linked proof above ↑</p>
+            </div>
+        </section>
+
+        <!-- 4. Projects Section -->
+        <section class="py-24 px-6" id="projects">
+            <div class="max-w-6xl mx-auto reveal">
+                <div class="space-y-4 mb-16">
+                    <h2 class="text-5xl font-headline font-bold text-on-surface drop-shadow-md">Experiments Lab</h2>
+                    <p class="text-on-surface-variant max-w-lg text-lg">Hover to interact with active research modules.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Project 1 (Featured) -->
+                    <div
+                        class="interactive-card md:col-span-2 group relative glass-panel rounded-2xl overflow-hidden shadow-2xl border border-primary/30 transition-shadow">
+                        <div class="p-10 md:p-12">
+                            <div class="space-y-6">
+                                <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                                    <div>
+                                        <span
+                                            class="px-4 py-1.5 bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest rounded-full border border-primary/30 mb-4 inline-block shadow-[0_0_10px_rgba(0,240,255,0.2)]">Featured
+                                            Project / Award Winning</span>
+                                        <h3 class="text-3xl md:text-4xl font-headline font-bold text-on-surface">
+                                            JEC-Resolve</h3>
+                                        <p class="text-primary mt-2 font-medium">Code Kumbh 2.0 Hackathon - Open
+                                            Innovation Category</p>
+                                    </div>
+                                    <span
+                                        class="material-symbols-outlined text-primary text-5xl opacity-30 group-hover:opacity-100 group-hover:drop-shadow-[0_0_15px_rgba(0,240,255,0.8)] transition-all duration-500">emoji_events</span>
+                                </div>
+                                <p class="text-lg text-on-surface-variant max-w-3xl">An award-winning web platform built
+                                    to solve real-world problems. Showcasing the synergy of logic and deployment
+                                    strategies to deliver immediate value.</p>
+                                <div class="flex gap-4 pt-4">
+                                    <button onclick="toggleDeepDive(this)"
+                                        class="cta-button px-6 py-2 bg-primary/20 text-primary border border-primary/50 rounded-full text-sm font-bold hover:bg-primary hover:text-surface">Deep
+                                        Dive</button>
+                                    <a href="https://omcodes-forcodekumb-hh.vercel.app/" target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="px-6 py-2 text-on-surface hover:text-primary flex items-center gap-2 transition-colors text-sm font-bold uppercase group-hover:drop-shadow-[0_0_5px_rgba(0,240,255,0.3)]">
+                                        <span class="material-symbols-outlined text-sm">link</span>
+                                        View Live
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Deep Dive Content -->
+                            <div class="deep-dive-content">
+                                <div class="deep-dive-inner border-t border-primary/20 pt-6 space-y-6">
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-primary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-[16px]">visibility</span>Project
+                                            Overview
+                                        </h4>
+                                        <p class="text-sm text-on-surface-variant leading-relaxed">A web-based grievance
+                                            management system designed to eliminate delays, lack of transparency, and
+                                            data loss in traditional college complaint systems.</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-primary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span
+                                                class="material-symbols-outlined text-[16px]">integration_instructions</span>Tech
+                                            Stack
+                                        </h4>
+                                        <p class="text-sm text-on-surface-variant leading-relaxed">React.js, Role-Based
+                                            Access Control (RBAC), Centralized Database</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-primary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span
+                                                class="material-symbols-outlined text-[16px]">settings_suggest</span>Working
+                                            Concept
+                                        </h4>
+                                        <p class="text-sm text-on-surface-variant leading-relaxed">The platform uses a
+                                            role-based system where students, faculty, and admins have different access
+                                            levels. When a grievance is submitted, a unique tracking ID is generated
+                                            automatically. The issue is then routed through the system with real-time
+                                            status updates stored in a centralized database.</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-primary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-[16px]">star</span>Key Features
+                                        </h4>
+                                        <ul
+                                            class="list-disc list-inside text-sm text-on-surface-variant leading-relaxed space-y-1">
+                                            <li>Automated tracking ID generation</li>
+                                            <li>Real-time grievance status updates</li>
+                                            <li>Role-based access control</li>
+                                            <li>Centralized secure data</li>
+                                        </ul>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-primary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span
+                                                class="material-symbols-outlined text-[16px]">psychology</span>Challenges
+                                            & Solutions
+                                        </h4>
+                                        <p class="text-sm text-on-surface-variant leading-relaxed">Managing multiple
+                                            user roles was solved using RBAC logic to control access and data flow.</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-primary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span
+                                                class="material-symbols-outlined text-[16px]">emoji_events</span>Outcome
+                                        </h4>
+                                        <p class="text-sm text-on-surface-variant leading-relaxed">Winner of “Best in
+                                            Open Innovation” at Code Kumbh 2.0.</p>
+                                    </div>
+
+                                    <div class="pt-2">
+                                        <a href="https://www.linkedin.com/posts/om-giri-goswami-7b03a8374_openinnovation-firsthackathon-webdevelopment-activity-7438593608766615552-pN-e?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFybSHQBva5Jjva8Ivu5Jlzv5AxXG4ve4-4"
+                                            target="_blank" rel="noopener noreferrer"
+                                            class="cta-button inline-flex items-center gap-2 px-6 py-2.5 bg-primary/10 border border-primary/50 text-primary rounded-full font-bold uppercase tracking-widest text-[11px] md:text-xs hover:bg-primary hover:text-surface hover:shadow-[0_0_15px_rgba(0,240,255,0.6)] transition-all">
+                                            <span class="material-symbols-outlined text-[16px]">workspace_premium</span>
+                                            View Achievement Proof
+                                        </a>
+                                    </div>
+
+                                    <!-- Project Media Gallery -->
+                                    <div class="pt-6 border-t border-primary/20">
+                                        <h4 class="text-primary font-bold uppercase tracking-wider text-xs mb-4">Project
+                                            Evidence & UI</h4>
+                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                            <!-- Certificate -->
+                                            <div
+                                                class="group relative aspect-[4/3] overflow-hidden rounded-xl border border-white/10 hover:border-primary/50 transition-all duration-300 shadow-md hover:shadow-[0_0_20px_rgba(0,240,255,0.3)] cursor-pointer">
+                                                <img src="./certificate.png" alt="Code Kumbh Certificate"
+                                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                    onclick="window.open(this.src, '_blank')"
+                                                    onerror="this.onerror=null; this.src='https://placehold.co/600x450/1b1b1b/00f0ff?text=Certificate'" />
+                                                <div
+                                                    class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                                                </div>
+                                            </div>
+                                            <!-- Winning Moment -->
+                                            <div
+                                                class="group relative aspect-[4/3] overflow-hidden rounded-xl border border-white/10 hover:border-primary/50 transition-all duration-300 shadow-md hover:shadow-[0_0_20px_rgba(0,240,255,0.3)] cursor-pointer">
+                                                <img src="./winning-moment.png" alt="Hackathon Winning Moment"
+                                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                    onclick="window.open(this.src, '_blank')"
+                                                    onerror="this.onerror=null; this.src='https://placehold.co/600x450/1b1b1b/00f0ff?text=Winning+Moment'" />
+                                                <div
+                                                    class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                                                </div>
+                                            </div>
+                                            <!-- UI Screenshot -->
+                                            <div
+                                                class="group relative aspect-[4/3] overflow-hidden rounded-xl border border-white/10 hover:border-primary/50 transition-all duration-300 shadow-md hover:shadow-[0_0_20px_rgba(0,240,255,0.3)] cursor-pointer">
+                                                <img src="./website-ui.png" alt="Website UI Screenshot"
+                                                    class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
+                                                    onclick="window.open(this.src, '_blank')"
+                                                    onerror="this.onerror=null; this.src='https://placehold.co/600x450/1b1b1b/00f0ff?text=Platform+UI'" />
+                                                <div
+                                                    class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div
+                        class="interactive-card group relative glass-panel rounded-2xl overflow-hidden shadow-2xl border border-white/10 hover:border-secondary/40 transition-shadow">
+                        <div class="p-8">
+                            <div class="space-y-4">
+                                <span
+                                    class="text-xs font-bold tracking-[0.2em] text-secondary uppercase drop-shadow-[0_0_2px_rgba(227,181,255,0.5)]">Hardware
+                                    / Robotics</span>
+                                <h3 class="text-2xl font-headline font-bold text-on-surface">Kinetic Showdown Robo Race
+                                </h3>
+                                <p class="text-on-surface-variant">Built a custom robo-car for competitive racing at
+                                    Inertia 2.0 tech fest, optimizing motor controls and chassis stability for speed.
+                                </p>
+                                <div class="flex gap-4 pt-4">
+                                    <button onclick="toggleDeepDive(this)"
+                                        class="cta-button px-6 py-2 bg-secondary/10 text-secondary border border-secondary/50 rounded-full text-sm font-bold hover:bg-secondary hover:text-surface">Deep
+                                        Dive</button>
+                                </div>
+                            </div>
+
+                            <!-- Deep Dive Content -->
+                            <div class="deep-dive-content">
+                                <div class="deep-dive-inner border-t border-secondary/20 pt-6 space-y-6">
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-secondary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-[16px]">visibility</span>Project
+                                            Overview
+                                        </h4>
+                                        <p class="text-sm text-on-surface-variant leading-relaxed">A high-speed robotic
+                                            car built for competitive racing with focus on agility and control.</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-secondary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span
+                                                class="material-symbols-outlined text-[16px]">integration_instructions</span>Tech
+                                            Stack
+                                        </h4>
+                                        <p class="text-sm text-on-surface-variant leading-relaxed">ESP32, L298N Motor
+                                            Driver, HC-05 Bluetooth Module, C++</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-secondary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span
+                                                class="material-symbols-outlined text-[16px]">settings_suggest</span>Working
+                                            Concept
+                                        </h4>
+                                        <p class="text-sm text-on-surface-variant leading-relaxed">The robot uses ESP32
+                                            for processing and Bluetooth for control. PWM is used to regulate motor
+                                            speed and enable differential steering for sharp turns.</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-secondary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-[16px]">star</span>Key Features
+                                        </h4>
+                                        <ul
+                                            class="list-disc list-inside text-sm text-on-surface-variant leading-relaxed space-y-1">
+                                            <li>Real-time Bluetooth control</li>
+                                            <li>PWM-based speed control</li>
+                                            <li>Differential steering</li>
+                                            <li>High-speed performance</li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Robotics Media Gallery -->
+                                    <div class="py-2 my-2">
+                                        <h4 class="text-secondary font-bold uppercase tracking-wider text-xs mb-3">
+                                            Hardware Build & Competition</h4>
+                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                            <!-- Build Image -->
+                                            <div
+                                                class="group relative aspect-[4/3] overflow-hidden rounded-xl border border-white/10 hover:border-secondary/50 transition-all duration-300 shadow-md hover:shadow-[0_0_20px_rgba(227,181,255,0.3)] cursor-pointer">
+                                                <img src="./robo-build.png" alt="Robo Car Build"
+                                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                    onclick="window.open(this.src, '_blank')"
+                                                    onerror="this.onerror=null; this.src='https://placehold.co/600x450/1b1b1b/e3b5ff?text=Robo+Build'" />
+                                                <div
+                                                    class="absolute inset-0 bg-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                                                </div>
+                                            </div>
+                                            <!-- Close Up / Dirt Track -->
+                                            <div
+                                                class="group relative aspect-[4/3] overflow-hidden rounded-xl border border-white/10 hover:border-secondary/50 transition-all duration-300 shadow-md hover:shadow-[0_0_20px_rgba(227,181,255,0.3)] cursor-pointer">
+                                                <img src="./robo-close-up.png" alt="Close-up Hardware Shot"
+                                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                                    onclick="window.open(this.src, '_blank')"
+                                                    onerror="this.onerror=null; this.src='https://placehold.co/600x450/1b1b1b/e3b5ff?text=Component+Close-up'" />
+                                                <div
+                                                    class="absolute inset-0 bg-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                                                </div>
+                                            </div>
+                                            <!-- Team Image -->
+                                            <div
+                                                class="group relative aspect-[4/3] overflow-hidden rounded-xl border border-white/10 hover:border-secondary/50 transition-all duration-300 shadow-md hover:shadow-[0_0_20px_rgba(227,181,255,0.3)] cursor-pointer">
+                                                <img src="./robo-team.png" alt="Race Track Team Photo"
+                                                    class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                                                    onclick="window.open(this.src, '_blank')"
+                                                    onerror="this.onerror=null; this.src='https://placehold.co/600x450/1b1b1b/e3b5ff?text=Team+%26+Track'" />
+                                                <div
+                                                    class="absolute inset-0 bg-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="space-y-2 mt-6">
+                                        <h4
+                                            class="text-secondary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span
+                                                class="material-symbols-outlined text-[16px]">psychology</span>Challenges
+                                            & Solutions
+                                        </h4>
+                                        <p class="text-sm text-on-surface-variant leading-relaxed">Control at high speed
+                                            was improved by tuning PWM values and steering logic.</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-secondary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span
+                                                class="material-symbols-outlined text-[16px]">emoji_events</span>Outcome
+                                        </h4>
+                                        <p class="text-sm text-on-surface-variant leading-relaxed">Successfully competed
+                                            in INERTIA 2.0 Robo Race.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div
+                        class="interactive-card group relative glass-panel rounded-2xl overflow-hidden shadow-2xl border border-white/10 hover:border-primary/40 transition-shadow">
+                        <div class="p-8">
+                            <div class="space-y-4">
+                                <span
+                                    class="text-xs font-bold tracking-[0.2em] text-primary uppercase drop-shadow-[0_0_2px_rgba(0,240,255,0.5)]">Embedded
+                                    / Sensors</span>
+                                <h3 class="text-2xl font-headline font-bold text-on-surface">Non-Contact Hygiene System
+                                </h3>
+                                <p class="text-on-surface-variant">An Arduino and ultrasonic sensor-based touchless
+                                    system designed to enhance safety and hygiene in public access points.</p>
+                                <div class="flex gap-4 pt-4">
+                                    <button onclick="toggleDeepDive(this)"
+                                        class="cta-button px-6 py-2 bg-primary/10 text-primary border border-primary/50 rounded-full text-sm font-bold hover:bg-primary hover:text-surface">Deep
+                                        Dive</button>
+                                </div>
+                            </div>
+
+                            <!-- Deep Dive Content -->
+                            <div class="deep-dive-content">
+                                <div class="deep-dive-inner border-t border-primary/20 pt-6 space-y-6">
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-primary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-[16px]">visibility</span>Project
+                                            Overview
+                                        </h4>
+                                        <p class="text-sm text-on-surface-variant leading-relaxed">A touchless
+                                            automation system to reduce contamination in public spaces.</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-primary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span
+                                                class="material-symbols-outlined text-[16px]">integration_instructions</span>Tech
+                                            Stack
+                                        </h4>
+                                        <p class="text-sm text-on-surface-variant leading-relaxed">Arduino (ATmega328P),
+                                            Ultrasonic Sensor, Servo Motor / Solenoid Valve</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-primary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span
+                                                class="material-symbols-outlined text-[16px]">settings_suggest</span>Working
+                                            Concept
+                                        </h4>
+                                        <p class="text-sm text-on-surface-variant leading-relaxed">Ultrasonic sensor
+                                            detects hand presence within 5–10 cm and triggers automatic actuation via
+                                            microcontroller.</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-primary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-[16px]">star</span>Key Features
+                                        </h4>
+                                        <ul
+                                            class="list-disc list-inside text-sm text-on-surface-variant leading-relaxed space-y-1">
+                                            <li>Touchless interaction</li>
+                                            <li>Real-time response</li>
+                                            <li>Sensor-based automation</li>
+                                            <li>High accuracy detection</li>
+                                        </ul>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-primary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span
+                                                class="material-symbols-outlined text-[16px]">psychology</span>Challenges
+                                            & Solutions
+                                        </h4>
+                                        <p class="text-sm text-on-surface-variant leading-relaxed">False triggers were
+                                            solved using noise filtering logic, achieving high accuracy.</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-primary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span
+                                                class="material-symbols-outlined text-[16px]">emoji_events</span>Outcome
+                                        </h4>
+                                        <p class="text-sm text-on-surface-variant leading-relaxed">A reliable real-world
+                                            hygiene solution.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div
+                        class="interactive-card group relative glass-panel rounded-2xl overflow-hidden shadow-2xl border border-white/10 hover:border-primary/40 transition-shadow">
+                        <div class="p-8">
+                            <div class="space-y-4">
+                                <span
+                                    class="text-xs font-bold tracking-[0.2em] text-primary uppercase drop-shadow-[0_0_2px_rgba(0,240,255,0.5)]">Security
+                                    / Automation</span>
+                                <h3 class="text-2xl font-headline font-bold text-on-surface">Smart Door Lock</h3>
+                                <p class="text-on-surface-variant">An Arduino-based robust security system utilizing a
+                                    matrix keypad and servo motor actuations for controlled access.</p>
+                                <div class="flex gap-4 pt-4">
+                                    <button onclick="toggleDeepDive(this)"
+                                        class="cta-button px-6 py-2 bg-primary/10 text-primary border border-primary/50 rounded-full text-sm font-bold hover:bg-primary hover:text-surface">Deep
+                                        Dive</button>
+                                </div>
+                            </div>
+
+                            <!-- Deep Dive Content -->
+                            <div class="deep-dive-content">
+                                <div class="deep-dive-inner border-t border-primary/20 pt-6 space-y-6">
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-primary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-[16px]">visibility</span>Project
+                                            Overview
+                                        </h4>
+                                        <p class="text-sm text-on-surface-variant leading-relaxed">A
+                                            microcontroller-based security system with password authentication.</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-primary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span
+                                                class="material-symbols-outlined text-[16px]">integration_instructions</span>Tech
+                                            Stack
+                                        </h4>
+                                        <p class="text-sm text-on-surface-variant leading-relaxed">Arduino, 4x4 Keypad,
+                                            I2C LCD, Solenoid Lock, EEPROM</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-primary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span
+                                                class="material-symbols-outlined text-[16px]">settings_suggest</span>Working
+                                            Concept
+                                        </h4>
+                                        <p class="text-sm text-on-surface-variant leading-relaxed">User enters password
+                                            via keypad. Data stored in EEPROM ensures persistence. LCD shows system
+                                            feedback.</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-primary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-[16px]">star</span>Key Features
+                                        </h4>
+                                        <ul
+                                            class="list-disc list-inside text-sm text-on-surface-variant leading-relaxed space-y-1">
+                                            <li>Password-based access</li>
+                                            <li>EEPROM storage</li>
+                                            <li>Real-time display feedback</li>
+                                            <li>Secure locking system</li>
+                                        </ul>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-primary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span
+                                                class="material-symbols-outlined text-[16px]">psychology</span>Challenges
+                                            & Solutions
+                                        </h4>
+                                        <p class="text-sm text-on-surface-variant leading-relaxed">Input errors handled
+                                            using custom debouncing logic.</p>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <h4
+                                            class="text-primary font-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                                            <span
+                                                class="material-symbols-outlined text-[16px]">emoji_events</span>Outcome
+                                        </h4>
+                                        <p class="text-sm text-on-surface-variant leading-relaxed">Stable embedded
+                                            system demonstrating hardware-software interfacing.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Proof of Work Section -->
+        <section class="py-24 px-6 bg-surface relative" id="proof-of-work">
+            <div class="max-w-6xl mx-auto reveal">
+                <div class="space-y-4 mb-16 text-center">
+                    <h2 class="text-5xl font-headline font-bold text-on-surface drop-shadow-md">Proof of Work</h2>
+                    <p class="text-on-surface-variant text-lg max-w-2xl mx-auto">Visual evidence of engineering,
+                        building, and winning.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- JEC Resolve App Image -->
+                    <div
+                        class="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 hover:border-primary/50 shadow-xl hover:shadow-[0_0_30px_rgba(0,240,255,0.3)] cursor-pointer transition-all duration-500">
+                        <img src="./jec-resolve-app.png" alt="JEC-Resolve Framework"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            loading="lazy" onclick="window.open(this.src, '_blank')"
+                            onerror="this.onerror=null; this.src='https://placehold.co/800x600/1b1b1b/00f0ff?text=JEC-Resolve+Framework'" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-end p-6">
+                            <span
+                                class="text-white font-headline font-bold tracking-widest uppercase text-sm drop-shadow-md">JEC-Resolve
+                                App</span>
+                        </div>
+                    </div>
+
+                    <!-- Door Lock Image -->
+                    <div
+                        class="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 hover:border-secondary/50 shadow-xl hover:shadow-[0_0_30px_rgba(227,181,255,0.3)] cursor-pointer transition-all duration-500">
+                        <img src="./door-lock.png" alt="Smart Door Lock"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            onclick="window.open(this.src, '_blank')"
+                            onerror="this.onerror=null; this.src='https://placehold.co/800x600/1b1b1b/e3b5ff?text=Smart+Door+Lock'" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-end p-6">
+                            <span
+                                class="text-white font-headline font-bold tracking-widest uppercase text-sm drop-shadow-md">Smart
+                                Door Lock Prototype</span>
+                        </div>
+                    </div>
+
+                    <!-- Hygiene System Image -->
+                    <div
+                        class="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 hover:border-primary/50 shadow-xl hover:shadow-[0_0_30px_rgba(0,240,255,0.3)] cursor-pointer transition-all duration-500">
+                        <img src="./hygiene.png" alt="Non-Contact Hygiene System"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            onclick="window.open(this.src, '_blank')"
+                            onerror="this.onerror=null; this.src='https://placehold.co/800x600/1b1b1b/00f0ff?text=Non-Contact+Hygiene'" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-end p-6">
+                            <span
+                                class="text-white font-headline font-bold tracking-widest uppercase text-sm drop-shadow-md">Non-Contact
+                                Hygiene</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates Section -->
+        <section class="py-24 px-6 relative overflow-hidden" id="certificates" style="background: linear-gradient(180deg, #131313 0%, #1a1a2e 30%, #16213e 50%, #1a1a2e 70%, #131313 100%);">
+            <!-- Multiple colorful background glows -->
+            <div class="absolute top-[10%] left-[10%] w-[400px] h-[400px] bg-[#00f0ff] rounded-full blur-[180px] opacity-[0.06] pointer-events-none"></div>
+            <div class="absolute bottom-[10%] right-[10%] w-[400px] h-[400px] bg-[#9400e4] rounded-full blur-[180px] opacity-[0.06] pointer-events-none"></div>
+            <div class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#e3b5ff] rounded-full blur-[200px] opacity-[0.04] pointer-events-none"></div>
+
+            <div class="max-w-6xl mx-auto reveal relative z-10">
+                <div class="space-y-4 mb-16 text-center">
+                    <div class="flex items-center justify-center gap-3 mb-4">
+                        <span class="material-symbols-outlined text-primary text-4xl drop-shadow-[0_0_10px_rgba(0,240,255,0.5)]">workspace_premium</span>
+                    </div>
+                    <h2 class="text-5xl md:text-6xl font-headline font-bold text-on-surface drop-shadow-md">
+                        Certifications</h2>
+                    <p class="text-on-surface-variant text-lg max-w-2xl mx-auto">Verified credentials from
+                        industry-leading AI platforms — continuous upskilling in action.</p>
+                    <div class="flex items-center justify-center gap-2 mt-4">
+                        <span class="w-12 h-[2px] bg-gradient-to-r from-transparent to-primary/60"></span>
+                        <span class="text-[10px] uppercase tracking-[0.4em] text-primary/60 font-bold">Anthropic
+                            Certified</span>
+                        <span class="w-12 h-[2px] bg-gradient-to-l from-transparent to-primary/60"></span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Certificate 1: AI Fluency -->
+                    <div
+                        class="interactive-card group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-[0_0_40px_rgba(0,240,255,0.25)] transition-all duration-500" style="background: linear-gradient(145deg, rgba(0,240,255,0.08), rgba(20,20,20,0.6)); border: 1px solid rgba(0,240,255,0.15);">
+                        <div class="relative aspect-[4/3] overflow-hidden cursor-pointer rounded-t-2xl"
+                            onclick="window.open('./cert-ai-fluency.png', '_blank')">
+                            <img src="./cert-ai-fluency.png" alt="AI Fluency: Framework & Foundations Certificate"
+                                class="w-full h-full object-contain bg-[#8a8a4a]/20 group-hover:scale-105 transition-transform duration-700"
+                                loading="lazy"
+                                onerror="this.onerror=null; this.src='https://placehold.co/800x600/1b1b1b/00f0ff?text=AI+Fluency'" />
+                            <!-- Hover badge -->
+                            <div
+                                class="absolute top-4 right-4 px-3 py-1.5 bg-black/60 backdrop-blur-md rounded-full border border-primary/30 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                                <span class="text-[10px] text-primary font-bold uppercase tracking-widest flex items-center gap-1.5">
+                                    <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+                                    View Full
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-6" style="background: linear-gradient(180deg, rgba(0,240,255,0.05) 0%, rgba(20,20,20,0.8) 100%);">
+                            <div class="flex items-start justify-between gap-4">
+                                <div>
+                                    <h3 class="text-lg font-headline font-bold text-on-surface group-hover:text-primary transition-colors">
+                                        AI Fluency: Framework & Foundations</h3>
+                                    <p class="text-xs text-on-surface-variant mt-1 uppercase tracking-widest">Anthropic
+                                    </p>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined text-primary/40 group-hover:text-primary group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.6)] transition-all text-2xl">verified</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certificate 2: Claude 101 -->
+                    <div
+                        class="interactive-card group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-[0_0_40px_rgba(227,181,255,0.25)] transition-all duration-500" style="background: linear-gradient(145deg, rgba(227,181,255,0.08), rgba(20,20,20,0.6)); border: 1px solid rgba(227,181,255,0.15);">
+                        <div class="relative aspect-[4/3] overflow-hidden cursor-pointer rounded-t-2xl"
+                            onclick="window.open('./cert-claude-101.png', '_blank')">
+                            <img src="./cert-claude-101.png" alt="Claude 101 Certificate"
+                                class="w-full h-full object-contain bg-[#d5cec3]/20 group-hover:scale-105 transition-transform duration-700"
+                                loading="lazy"
+                                onerror="this.onerror=null; this.src='https://placehold.co/800x600/1b1b1b/e3b5ff?text=Claude+101'" />
+                            <div
+                                class="absolute top-4 right-4 px-3 py-1.5 bg-black/60 backdrop-blur-md rounded-full border border-secondary/30 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                                <span class="text-[10px] text-secondary font-bold uppercase tracking-widest flex items-center gap-1.5">
+                                    <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+                                    View Full
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-6" style="background: linear-gradient(180deg, rgba(227,181,255,0.05) 0%, rgba(20,20,20,0.8) 100%);">
+                            <div class="flex items-start justify-between gap-4">
+                                <div>
+                                    <h3 class="text-lg font-headline font-bold text-on-surface group-hover:text-secondary transition-colors">
+                                        Claude 101</h3>
+                                    <p class="text-xs text-on-surface-variant mt-1 uppercase tracking-widest">Anthropic
+                                    </p>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined text-secondary/40 group-hover:text-secondary group-hover:drop-shadow-[0_0_8px_rgba(227,181,255,0.6)] transition-all text-2xl">verified</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certificate 3: Claude Code in Action -->
+                    <div
+                        class="interactive-card group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-[0_0_40px_rgba(0,240,255,0.25)] transition-all duration-500" style="background: linear-gradient(145deg, rgba(0,240,255,0.08), rgba(20,20,20,0.6)); border: 1px solid rgba(0,240,255,0.15);">
+                        <div class="relative aspect-[4/3] overflow-hidden cursor-pointer rounded-t-2xl"
+                            onclick="window.open('./cert-claude-code.png', '_blank')">
+                            <img src="./cert-claude-code.png" alt="Claude Code in Action Certificate"
+                                class="w-full h-full object-contain bg-[#8a8a4a]/20 group-hover:scale-105 transition-transform duration-700"
+                                loading="lazy"
+                                onerror="this.onerror=null; this.src='https://placehold.co/800x600/1b1b1b/00f0ff?text=Claude+Code'" />
+                            <div
+                                class="absolute top-4 right-4 px-3 py-1.5 bg-black/60 backdrop-blur-md rounded-full border border-primary/30 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                                <span class="text-[10px] text-primary font-bold uppercase tracking-widest flex items-center gap-1.5">
+                                    <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+                                    View Full
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-6" style="background: linear-gradient(180deg, rgba(0,240,255,0.05) 0%, rgba(20,20,20,0.8) 100%);">
+                            <div class="flex items-start justify-between gap-4">
+                                <div>
+                                    <h3 class="text-lg font-headline font-bold text-on-surface group-hover:text-primary transition-colors">
+                                        Claude Code in Action</h3>
+                                    <p class="text-xs text-on-surface-variant mt-1 uppercase tracking-widest">Anthropic
+                                        · Issued March 27, 2026</p>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined text-primary/40 group-hover:text-primary group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.6)] transition-all text-2xl">verified</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certificate 4: Claude with the Anthropic API -->
+                    <div
+                        class="interactive-card group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-[0_0_40px_rgba(227,181,255,0.25)] transition-all duration-500" style="background: linear-gradient(145deg, rgba(227,181,255,0.08), rgba(20,20,20,0.6)); border: 1px solid rgba(227,181,255,0.15);">
+                        <div class="relative aspect-[4/3] overflow-hidden cursor-pointer rounded-t-2xl"
+                            onclick="window.open('./cert-anthropic-api.png', '_blank')">
+                            <img src="./cert-anthropic-api.png" alt="Claude with the Anthropic API Certificate"
+                                class="w-full h-full object-contain bg-[#7a9ec0]/20 group-hover:scale-105 transition-transform duration-700"
+                                loading="lazy"
+                                onerror="this.onerror=null; this.src='https://placehold.co/800x600/1b1b1b/e3b5ff?text=Anthropic+API'" />
+                            <div
+                                class="absolute top-4 right-4 px-3 py-1.5 bg-black/60 backdrop-blur-md rounded-full border border-secondary/30 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                                <span class="text-[10px] text-secondary font-bold uppercase tracking-widest flex items-center gap-1.5">
+                                    <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+                                    View Full
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-6" style="background: linear-gradient(180deg, rgba(227,181,255,0.05) 0%, rgba(20,20,20,0.8) 100%);">
+                            <div class="flex items-start justify-between gap-4">
+                                <div>
+                                    <h3 class="text-lg font-headline font-bold text-on-surface group-hover:text-secondary transition-colors">
+                                        Claude with the Anthropic API</h3>
+                                    <p class="text-xs text-on-surface-variant mt-1 uppercase tracking-widest">Anthropic
+                                        · Issued March 27, 2026</p>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined text-secondary/40 group-hover:text-secondary group-hover:drop-shadow-[0_0_8px_rgba(227,181,255,0.6)] transition-all text-2xl">verified</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-center text-on-surface-variant/40 text-[10px] uppercase tracking-[0.3em] mt-10">Click
+                    any certificate to view full resolution ↑</p>
+            </div>
+        </section>
+
+        <!-- 5. Contact Section -->
+        <section class="py-32 px-6 bg-surface-container-lowest border-t border-outline-variant/20 relative"
+            id="contact">
+            <div class="max-w-4xl mx-auto reveal">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-headline font-bold text-on-surface drop-shadow-sm">Gravity Zone: Base
+                        Command</h2>
+                    <p class="text-on-surface-variant mt-4 font-body text-xl font-medium tracking-wide text-primary">
+                        Let’s build something impactful together.</p>
+                </div>
+
+                <div
+                    class="bg-surface p-8 md:p-12 rounded-2xl border border-outline-variant/40 shadow-2xl relative z-10 transition-transform hover:border-outline-variant/80 duration-500">
+                    <form id="contact-form" action="#" class="space-y-8">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="relative group">
+                                <label for="contact-name"
+                                    class="text-sm text-primary/80 font-bold tracking-widest uppercase mb-2 block">Name</label>
+                                <input id="contact-name" required
+                                    class="w-full bg-surface-container-low border border-outline-variant/50 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-all text-on-surface placeholder:text-on-surface/30 focus:shadow-[0_0_15px_rgba(0,240,255,0.1)]"
+                                    placeholder="John Doe" type="text" />
+                            </div>
+                            <div class="relative group">
+                                <label for="contact-email"
+                                    class="text-sm text-primary/80 font-bold tracking-widest uppercase mb-2 block">Email
+                                    Coordinates</label>
+                                <input id="contact-email" required
+                                    class="w-full bg-surface-container-low border border-outline-variant/50 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-all text-on-surface placeholder:text-on-surface/30 focus:shadow-[0_0_15px_rgba(0,240,255,0.1)]"
+                                    placeholder="john@example.com" type="email" />
+                            </div>
+                        </div>
+                        <div class="relative group">
+                            <label for="contact-message"
+                                class="text-sm text-primary/80 font-bold tracking-widest uppercase mb-2 block">Transmission
+                                Payload</label>
+                            <textarea id="contact-message" required
+                                class="w-full bg-surface-container-low border border-outline-variant/50 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-all text-on-surface placeholder:text-on-surface/30 resize-none focus:shadow-[0_0_15px_rgba(0,240,255,0.1)]"
+                                placeholder="Your message here..." rows="5"></textarea>
+                        </div>
+                        <div class="flex justify-between items-center pt-4 border-t border-outline-variant/30 mt-8">
+                            <div class="flex gap-4">
+                                <a href="https://www.linkedin.com/in/om-giri-goswami-7b03a8374" target="_blank" rel="noopener noreferrer"
+                                    class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center border border-outline-variant/50 hover:border-[#0077b5] hover:text-[#0077b5] transition-all hover:shadow-[0_0_15px_rgba(0,119,181,0.3)] hover:-translate-y-1" title="LinkedIn">
+                                    <span class="material-symbols-outlined text-[20px]">link</span>
+                                </a>
+                                <a href="https://github.com/omcodes16" target="_blank" rel="noopener noreferrer"
+                                    class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center border border-outline-variant/50 hover:border-white hover:text-white transition-all hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:-translate-y-1" title="GitHub">
+                                    <span class="material-symbols-outlined text-[20px]">code</span>
+                                </a>
+                            </div>
+                            <button id="submit-btn"
+                                class="cta-button group flex items-center gap-3 bg-primary text-surface px-8 py-3 rounded-xl font-bold uppercase tracking-widest text-sm hover:shadow-[0_0_20px_rgba(0,240,255,0.5)] disabled:opacity-50 disabled:cursor-not-allowed"
+                                type="submit">
+                                <span id="submit-text">Send Signal</span>
+                                <span
+                                    class="material-symbols-outlined group-hover:translate-x-1 transition-transform">send</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Connect With Me Section -->
+                <div class="mt-20 pt-16 border-t border-outline-variant/20 relative z-10 transition-transform reveal">
+                    <div class="text-center mb-10">
+                        <h3 class="text-3xl font-headline font-bold text-on-surface drop-shadow-sm">Connect With Me</h3>
+                        <p class="text-on-surface-variant mt-2 font-body text-sm">Establish a direct neural link via
+                            professional networks.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- LinkedIn Block -->
+                        <div
+                            class="interactive-card glass-panel p-8 rounded-2xl border border-white/10 hover:border-[#0077b5]/50 hover:shadow-[0_0_30px_rgba(0,119,181,0.25)] flex flex-col items-center text-center group bg-surface-container-low/50">
+                            <div
+                                class="w-16 h-16 rounded-full bg-[#0077b5]/10 text-[#0077b5] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-bold text-on-surface mb-2">LinkedIn</h4>
+                            <p class="text-sm text-on-surface-variant mb-8">Professional Network & Work History</p>
+                            <a href="https://www.linkedin.com/in/om-giri-goswami-7b03a8374" target="_blank"
+                                rel="noopener noreferrer"
+                                class="cta-button w-full py-4 bg-[#0077b5]/20 text-[#0077b5] rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-[#0077b5] hover:text-white transition-colors border border-[#0077b5]/30">
+                                View LinkedIn Profile
+                            </a>
+                        </div>
+
+                        <!-- GitHub Block -->
+                        <div
+                            class="interactive-card glass-panel p-8 rounded-2xl border border-white/10 hover:border-white/50 hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] flex flex-col items-center text-center group bg-surface-container-low/50">
+                            <div
+                                class="w-16 h-16 rounded-full bg-white/10 text-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-bold text-on-surface mb-2">GitHub</h4>
+                            <p class="text-sm text-on-surface-variant mb-8">Open Source & Code Repositories</p>
+                            <a href="https://github.com/omcodes16" target="_blank" rel="noopener noreferrer"
+                                class="cta-button w-full py-4 bg-white/10 text-white rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-white hover:text-surface transition-colors border border-white/20">
+                                View GitHub Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Giant Closing Statement — The Anti-Gravity Manifesto -->
+        <section class="giant-statement">
+            <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(circle at center, rgba(0,240,255,0.04) 0%, transparent 60%);"></div>
+            <div class="max-w-5xl mx-auto relative z-10 reveal">
+                <h2 class="font-headline">GRAVITY PULLS DOWN.<br/>I BUILD UP.</h2>
+                <p class="giant-sub font-headline" style="max-width: 600px; margin-left: auto; margin-right: auto; line-height: 2.2; color: rgba(255,255,255,0.15);">
+                    1st Year Fresher. Hackathon Winner. IoT Builder.<br/>
+                    This isn't where it ends — it's where it launches.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-6 mt-12">
+                    <a href="#contact" class="cta-button px-10 py-4 bg-primary-container text-surface rounded-full font-bold uppercase tracking-widest text-sm shadow-[0_0_20px_rgba(0,240,255,0.5)]">Launch Together</a>
+                    <a href="#hero" class="cta-button px-10 py-4 border border-primary text-primary rounded-full font-bold uppercase tracking-widest text-sm hover:bg-primary/10">Back to Top</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 z-[300] flex items-center justify-center bg-black/80 backdrop-blur-xl hidden" onclick="if(event.target===this) closeModal()">
+        <div class="glass-panel rounded-3xl p-10 md:p-14 max-w-md mx-6 text-center border border-primary/30 shadow-[0_0_60px_rgba(0,240,255,0.2)] relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-white/40 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div class="w-20 h-20 rounded-full bg-primary/10 border-2 border-primary/50 flex items-center justify-center mx-auto mb-6 shadow-[0_0_30px_rgba(0,240,255,0.3)]">
+                <span class="material-symbols-outlined text-primary text-4xl">check_circle</span>
+            </div>
+            <h3 class="text-2xl font-headline font-bold text-on-surface mb-2">Signal Transmitted</h3>
+            <p class="text-on-surface-variant text-sm mb-8">Your message has been received. I'll get back to you as soon as possible.</p>
+            <button onclick="closeModal()" class="cta-button px-8 py-3 bg-primary text-surface rounded-full font-bold uppercase tracking-widest text-sm hover:shadow-[0_0_20px_rgba(0,240,255,0.5)]">
+                Roger That
+            </button>
+        </div>
+    </div>
+
+    <!-- Floating Scroll-to-Top Button -->
+    <a href="#hero" id="fab-scroll-top" class="fab-scroll" title="Back to top">
+        <span class="material-symbols-outlined text-primary text-xl">keyboard_arrow_up</span>
+    </a>
+
+    <footer class="w-full py-16 text-center bg-surface-container-lowest border-t border-white/5 relative z-10">
+        <div class="flex flex-col items-center gap-8">
+            <!-- Secret Game Trigger (Fingerprint) -->
+            <button onclick="triggerScanning()" id="fingerprint-btn" class="group relative w-16 h-16 rounded-full border border-primary/20 flex items-center justify-center hover:border-primary transition-all duration-500 hover:shadow-[0_0_25px_rgba(0,240,255,0.3)]">
+                <span class="material-symbols-outlined text-primary/30 group-hover:text-primary transition-colors text-3xl">fingerprint</span>
+                <div id="scan-line" class="absolute inset-0 bg-primary/20 scale-y-0 origin-top pointer-events-none transition-transform duration-[1.5s]"></div>
+                <!-- Tooltip -->
+                 <span class="absolute -top-10 scale-0 group-hover:scale-100 transition-transform text-[8px] uppercase tracking-widest text-primary/60">Biometric Verification Required</span>
+            </button>
+            <div class="font-[Inter] text-[10px] tracking-[0.2em] uppercase text-white/40">
+                © 2026 OM GIRI GOSWAMI // JEC ECE // ANTI-GRAVITY LABS
+            </div>
+        </div>
+    </footer>
+
+    <!-- Secret Game Overlay (Void Runner) -->
+    <div id="game-overlay" class="fixed inset-0 z-[250] bg-[#000] hidden cursor-pointer select-none touch-none" style="touch-action: none;">
+        <!-- Back Button -->
+        <button onclick="location.reload()" class="fixed top-8 right-8 z-[300] group flex items-center gap-3 bg-white/5 border border-white/20 px-6 py-3 rounded-xl hover:border-primary hover:bg-primary/5 transition-all">
+            <span class="text-[10px] text-white/40 group-hover:text-primary transition-colors tracking-widest uppercase font-headline">Back to Portfolio</span>
+            <span class="material-symbols-outlined text-primary text-xl">logout</span>
+        </button>
+
+        <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+            <div class="fixed top-20 left-12 space-y-1">
+                <div class="text-primary font-headline text-2xl tracking-tighter opacity-80"># VOID_RUNNER.OS</div>
+                <div class="text-white/20 font-body text-[10px] uppercase tracking-[0.4em]">Synchronization: <span class="animate-pulse text-primary">Active</span></div>
+            </div>
+
+            <div class="fixed top-20 right-40 text-right">
+                <div class="text-white/20 text-[10px] uppercase mb-1 tracking-widest">Data Processed</div>
+                <div id="game-score" class="text-primary font-headline text-8xl font-bold leading-none opacity-30">0000</div>
+                <div class="text-primary/40 text-[10px] uppercase mt-2 tracking-[0.2em]">High Sync: <span id="game-high-score">0000</span></div>
+            </div>
+
+            <canvas id="game-canvas" class="w-full h-full"></canvas>
+
+            <!-- Start Overlay -->
+            <div id="game-ui-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-black/80 backdrop-blur-xl z-[280] pointer-events-auto">
+                <div class="text-center space-y-8">
+                    <div class="w-32 h-32 rounded-full border-2 border-primary/20 flex items-center justify-center animate-pulse">
+                        <span class="material-symbols-outlined text-primary text-6xl">bolt</span>
+                    </div>
+                    <div class="space-y-2">
+                        <h2 class="text-primary font-headline text-4xl font-bold tracking-[0.3em] uppercase">Void Runner</h2>
+                        <p class="text-white/40 font-body text-[10px] uppercase tracking-widest">Press Space or Click to Jump Over Firewalls</p>
+                    </div>
+                    <button id="start-game-btn" onclick="startGame()" class="px-14 py-5 bg-primary text-surface rounded-full font-bold uppercase tracking-[0.4em] text-xs shadow-[0_0_30px_rgba(0,240,255,0.4)] hover:scale-105 transition-transform">
+                        Initialize Link
+                    </button>
+                </div>
+            </div>
+
+            <!-- Game Over Overlay -->
+            <div id="game-over-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-black/90 backdrop-blur-2xl z-[290] hidden pointer-events-auto">
+                <div class="text-center space-y-8">
+                    <div class="space-y-2">
+                        <h3 class="text-secondary font-headline text-3xl font-bold tracking-[0.2em] uppercase">Link Severed</h3>
+                        <p class="text-white/40 font-body text-[10px] uppercase tracking-widest">Data Corruption Detected</p>
+                    </div>
+                    
+                    <div class="flex gap-12 justify-center items-center">
+                        <div class="text-center">
+                            <div class="text-white/20 text-[8px] uppercase tracking-widest mb-1">Final Score</div>
+                            <div id="final-score" class="text-primary text-4xl font-bold font-headline">0000</div>
+                        </div>
+                        <div class="w-px h-10 bg-white/10"></div>
+                        <div class="text-center">
+                            <div class="text-white/20 text-[8px] uppercase tracking-widest mb-1">Top Performer</div>
+                            <div id="top-performer" class="text-secondary text-4xl font-bold font-headline">0000</div>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <button onclick="resetGame()" class="px-10 py-4 bg-primary text-surface rounded-full font-bold uppercase tracking-[0.3em] text-[10px] shadow-[0_0_20px_rgba(0,240,255,0.3)] hover:scale-105 transition-transform">
+                            Re-Link
+                        </button>
+                        <button onclick="location.reload()" class="px-10 py-4 border border-white/20 text-white/60 rounded-full font-bold uppercase tracking-[0.3em] text-[10px] hover:bg-white/5 transition-all">
+                            Exit Void
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
